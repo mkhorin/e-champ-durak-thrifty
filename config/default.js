@@ -6,13 +6,12 @@
 module.exports = {
 
     label: 'Thrifty',
-
+    solver: {
+        Class: require('../Thrifty')
+    },
     translations: {
         'ru': {
             label: 'Бережливый'
         }
-    },
-    solver: {
-        Class: require('../Thrifty')
     }
 };
