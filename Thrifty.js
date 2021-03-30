@@ -16,8 +16,8 @@ module.exports = class Thrifty extends Base {
         });
     }
 
-    getTransferCard () {
-        const card = super.getTransferCard();
+    getCardToTransfer () {
+        const card = super.getCardToTransfer();
         if (!card || this.stock < this.minStockSizeToSaveTransfer) {
             return card;
         }
@@ -26,8 +26,8 @@ module.exports = class Thrifty extends Base {
         return currentAverage < pickedAverage ? null : card;
     }
 
-    getDefendingPairs () {
-        const pairs = super.getDefendingPairs();
+    getPairsToDefend () {
+        const pairs = super.getPairsToDefend();
         if (!pairs.length
             || this.cards.length === pairs.length
             || this.stock < this.minStockSizeToSaveDefense) {
@@ -62,8 +62,8 @@ module.exports = class Thrifty extends Base {
         return counter ? sum / counter : 0;
     }
 
-    resolveAttack (cards) {
-        cards = this.filterLowestCards(cards);
+    getCardsToNormalAttack (validCards) {
+        const cards = this.filterLowestCards(validCards);
         if (this.stock < this.minStockSizeToSaveAttack || !this.table.length || !cards.length) {
             return cards;
         }
