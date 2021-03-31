@@ -7,7 +7,7 @@ module.exports = {
 
     label: 'Thrifty',
     solver: {
-        Class: require('../Thrifty')
+        Class: require('../ThriftySolver')
     },
     translations: {
         'ru': {

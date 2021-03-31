@@ -3,9 +3,9 @@
  */
 'use strict';
 
-const Base = require('e-champ-durak/bot/Standard');
+const Base = require('e-champ-durak/bot/StandardSolver');
 
-module.exports = class Thrifty extends Base {
+module.exports = class ThriftySolver extends Base {
 
     constructor (config) {
         super({
