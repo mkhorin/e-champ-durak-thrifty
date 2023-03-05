@@ -1,8 +1,11 @@
 {
   "name": "e-champ-durak-thrifty",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Bot for playing E-Champ Durak",
-  "author": "Maxim Khorin",
+  "author": {
+    "name": "Maxim Khorin",
+    "email": "maksimovichu@gmail.com"
+  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

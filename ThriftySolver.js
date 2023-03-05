@@ -18,7 +18,10 @@ module.exports = class ThriftySolver extends Base {
 
     getCardToTransfer () {
         const card = super.getCardToTransfer();
-        if (!card || this.stock < this.minStockSizeToSaveTransfer) {
+        if (!card) {
+            return null;
+        }
+        if (this.stock < this.minStockSizeToSaveTransfer) {
             return card;
         }
         const currentAverage = this.countAverage(this.cards);
@@ -28,9 +31,13 @@ module.exports = class ThriftySolver extends Base {
 
     getPairsToDefend () {
         const pairs = super.getPairsToDefend();
-        if (!pairs.length
-            || this.cards.length === pairs.length
-            || this.stock < this.minStockSizeToSaveDefense) {
+        if (!pairs.length) {
+            return pairs;
+        }
+        if (this.cards.length === pairs.length) {
+            return pairs;
+        }
+        if (this.stock < this.minStockSizeToSaveDefense) {
             return pairs;
         }
         const defendedAverage = this.countDefendedAverage(pairs);
@@ -64,7 +71,10 @@ module.exports = class ThriftySolver extends Base {
 
     getCardsToNormalAttack (validCards) {
         const cards = this.filterLowestCards(validCards);
-        if (this.stock < this.minStockSizeToSaveAttack || !this.table.length || !cards.length) {
+        if (this.stock < this.minStockSizeToSaveAttack) {
+            return cards;
+        }
+        if (!this.table.length || !cards.length) {
             return cards;
         }
         const average = this.countAverage(this.cards);
@@ -85,6 +95,8 @@ module.exports = class ThriftySolver extends Base {
     }
 
     countCardValue (card) {
-        return card.rank + (this.isTrump(card) ? this.options.maxRank : 0);
+        return this.isTrump(card)
+            ? card.rank + this.options.maxRank
+            : card.rank;
     }
 };
